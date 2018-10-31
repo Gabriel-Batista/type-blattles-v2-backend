@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :require_login
+  skip_before_action :require_login, only: [:create], raise: false
+
   def index
     @users = User.all
     render json: @users
@@ -10,9 +13,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @new_user = User.new(name: params[:name], password: params[:password])
+    @new_user = User.new(name: params[:name], email: params[:email], password: params[:password])
     if @new_user.save
-      render json: @new_user
+      render json: { token: @new_user.token }
     else
       render json: @new_user.errors
     end
