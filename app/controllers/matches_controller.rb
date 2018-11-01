@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
   before_action :require_login
-  
+
   def index
     @matches = Match.all
     render json: @matches

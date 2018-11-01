@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  #TODO: Figure out how to send CSRF token to react frontend
+  skip_forgery_protection
   def require_login
     authenticate_token || render_unauthorized('Access denied')
   end
@@ -13,7 +15,7 @@ class ApplicationController < ActionController::Base
     serialized_data = ActiveModelSerializers::Adapter::Json.new(
       MatchSerializer.new(match)
     ).serializable_hash
-    ActionCable.server.broadcast_to match, serialized_data
+    MatchesChannel.broadcast_to match, serialized_data
     head :ok
   end
 
