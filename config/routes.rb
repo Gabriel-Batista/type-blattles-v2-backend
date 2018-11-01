@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  post '/matches/join', to: 'matches#join_game'
 
-  post '/join', to: 'matches#join'
+  mount ActionCable.server => '/cable'
 end
