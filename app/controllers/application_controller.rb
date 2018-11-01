@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   def require_login
     authenticate_token || render_unauthorized('Access denied')
@@ -5,6 +7,14 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= authenticate_token
+  end
+
+  def broadcast_to_match(match)
+    serialized_data = ActiveModelSerializers::Adapter::Json.new(
+      MatchSerializer.new(match)
+    ).serializable_hash
+    ActionCable.server.broadcast_to match, serialized_data
+    head :ok
   end
 
   protected

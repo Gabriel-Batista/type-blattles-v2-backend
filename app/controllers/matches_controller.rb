@@ -31,4 +31,24 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
     @match.destroy
   end
+
+  def join_game
+    @matches = Match.where('seats < 4')
+    @user = User.find(params[:user_id])
+    if @matches.empty? && @user.in_match == false
+      @match = Match.create
+      @match.players.create(user_id: params[:user_id])
+      @user.update(in_match: true)
+      render json: @match
+    elsif @user.in_match == false
+      @match = @matches.all.first
+      @match.players.create(user_id: params[:user_id])
+      @match.update(seats: @match.seats + 1)
+      @user.update(in_match: true)
+      broadcast_to_match(@match)
+      render json: @match
+    else
+      render json: { error: 'User is already in a match' }, status: 400
+    end
+  end
 end
