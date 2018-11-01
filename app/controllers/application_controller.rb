@@ -15,8 +15,7 @@ class ApplicationController < ActionController::Base
     serialized_data = ActiveModelSerializers::Adapter::Json.new(
       MatchSerializer.new(match)
     ).serializable_hash
-    MatchesChannel.broadcast_to match, serialized_data
-    head :ok
+    MatchesChannel.broadcast_to(match, serialized_data)
   end
 
   protected
