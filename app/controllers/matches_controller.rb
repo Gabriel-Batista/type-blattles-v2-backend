@@ -36,17 +36,17 @@ class MatchesController < ApplicationController
 
   def join_game
     token = request.headers['Authorization'].match(/token=(.+)/)[1]
-    @matches = Match.where('seats < 4')
+    @matches = Match.where('seats_taken < 4')
     @user = User.find_by(token: token)
     if @matches.empty? && @user.in_match == false
       @match = Match.create
-      @match.user_matches.create(user_id: params[:user_id])
+      @match.user_matches.create(user_id: @user.id)
       @user.update(in_match: true)
       render json: @match
     elsif @user.in_match == false
       @match = @matches.all.first
-      @match.players.create(user_id: params[:user_id])
-      @match.update(seats: @match.seats + 1)
+      @match.user_matches.create(user_id: @user.id)
+      @match.update(seats_taken: @match.seats_taken + 1)
       @user.update(in_match: true)
       broadcast_to_match(@match)
       render json: @match
