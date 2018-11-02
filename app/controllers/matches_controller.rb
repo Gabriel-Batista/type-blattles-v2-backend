@@ -39,7 +39,7 @@ class MatchesController < ApplicationController
     @user = User.find(params[:user_id])
     if @matches.empty? && @user.in_match == false
       @match = Match.create
-      @match.players.create(user_id: params[:user_id])
+      @match.user_matches.create(user_id: params[:user_id])
       @user.update(in_match: true)
       render json: @match
     elsif @user.in_match == false
