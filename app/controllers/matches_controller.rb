@@ -35,8 +35,9 @@ class MatchesController < ApplicationController
   end
 
   def join_game
+    token = request.headers['Authorization'].match(/token=(.+)/)[1]
     @matches = Match.where('seats < 4')
-    @user = User.find(params[:user_id])
+    @user = User.find_by(token: token)
     if @matches.empty? && @user.in_match == false
       @match = Match.create
       @match.user_matches.create(user_id: params[:user_id])
