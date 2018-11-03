@@ -22,7 +22,8 @@ class MatchesController < ApplicationController
 
   def update
     @match = Match.find(params[:id])
-    if @match.update(seats_taken: params[:seats_taken])
+    if @match.update(match_params)
+      broadcast_to_match(@match)
       render json: @match
     else
       render json: @match.errors
@@ -54,4 +55,12 @@ class MatchesController < ApplicationController
       render json: { error: 'User is already in a match' }, status: 400
     end
   end
+
+  private
+
+  def match_params
+    params.require(:match).permit(:complete, :seats_taken)
+  end
 end
+
+
