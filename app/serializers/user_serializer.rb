@@ -1,3 +1,3 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :in_match
+  attributes :id, :name, :email, :in_match
 end
