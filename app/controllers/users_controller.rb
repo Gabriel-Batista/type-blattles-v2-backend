@@ -8,7 +8,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    token = request.headers['Authorization'].match(/token=(.+)/)[1]
+    @user = User.find_by(token: token)
     render json: @user
   end
 
