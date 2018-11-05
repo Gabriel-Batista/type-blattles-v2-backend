@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
   private
 
   def send_auth_token_for_valid_login_of(user)
-    render json: { token: user.token, name: user.name }
+    render json: { token: user.token, name: user.name, id: user.id }
   end
 
   def allow_token_to_be_used_only_once_for(user)
