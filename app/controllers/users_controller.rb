@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(name: params[:name], password: params[:password])
+    if @user.update(user_params)
       render json: @user
     else
       render json: @user.errors
@@ -33,5 +33,11 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
+  end
+
+    private
+
+  def user_params
+    params.require(:user).permit(:name, :password, :in_match)
   end
 end
