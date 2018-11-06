@@ -1,24 +1,38 @@
-# README
+# Type-Battles-v2
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A fresh take on improving your typing speed, compete against friends and see who can reach the highest score. 
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+1. Clone or download the project to your computer.
+2. Open your terminal and type `bundle install` to download the dependencies.
+3. type `rails start` to start the server.
 
-* System dependencies
+To run frontend web app check link below:
+[Frontend](https://github.com/Gabriel-Batista/type-battles-v2/blob/master/README.md)
 
-* Configuration
+## Built With
 
-* Database creation
+* [Ruby on Rails](https://rubyonrails.org/) - The server framework used
+* [Semantic UI](https://react.semantic-ui.com/) - Used to generate RSS Feeds
+* [React](https://github.com/facebook/react) - The web framework used
+* [Redux](https://github.com/reduxjs/react-redux) - State manager
 
-* Database initialization
+## Contributing
 
-* How to run the test suite
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
-* Services (job queues, cache servers, search engines, etc.)
+## Authors
 
-* Deployment instructions
+* **Gabriel Batista** - *Initial work* - [Gabriel-Batista](https://github.com/Gabriel-Batista)
+* **Kevin Rivera** - *Initial work* - [Kevin-Rivera] (https://github.com/krivera1015)
 
-* ...
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* (Inspiration) https://play.typeracer.com/
