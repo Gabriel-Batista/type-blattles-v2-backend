@@ -12,7 +12,7 @@ class MatchesController < ApplicationController
   end
 
   def create
-    @new_match = Match.new(seats: params[:seats])
+    @new_match = Match.new(seats: params[:seats], paragraph: fetchNewParagraph)
     if @new_match.save
       render json: @new_match
     else
@@ -40,9 +40,10 @@ class MatchesController < ApplicationController
     @matches = Match.where('seats_taken < 4')
     @user = User.find_by(token: token)
     if @matches.empty? && @user.in_match == false
-      @match = Match.create
+      @match = Match.create(paragraph: fetchNewParagraph)
       @match.user_matches.create(user_id: @user.id)
       @user.update(in_match: true)
+      puts @match
       render json: @match
     elsif @user.in_match == false
       @match = @matches.all.first
@@ -50,6 +51,8 @@ class MatchesController < ApplicationController
       @match.update(seats_taken: @match.seats_taken + 1)
       @user.update(in_match: true)
       broadcast_to_match(@match)
+            puts @match
+
       render json: @match
     else
       render json: { error: 'User is already in a match' }, status: 400

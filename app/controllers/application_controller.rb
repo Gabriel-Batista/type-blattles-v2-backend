@@ -18,6 +18,18 @@ class ApplicationController < ActionController::Base
     MatchesChannel.broadcast_to(match, serialized_data)
   end
 
+  def fetchNewParagraph
+    @response = Excon.get('http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=10')
+    @paragraph_options = JSON.parse(@response.body).select do |paragraph|
+      match_data = paragraph['content'].match(/\&\#([0-9]+)\;/)
+      match_data == nil 
+    end
+    byebug
+    @paragraph_options.first['content'].gsub(/<\/?p>\s?+/, '').gsub('\n', '').strip
+    # /&#([0-9]+);/ <== replace apostrophe with single quote
+  end
+
+
   protected
 
   def render_unauthorized(message)
