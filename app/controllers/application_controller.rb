@@ -22,10 +22,9 @@ class ApplicationController < ActionController::Base
     @response = Excon.get('http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=10')
     @paragraph_options = JSON.parse(@response.body).select do |paragraph|
       match_data = paragraph['content'].match(/\&\#([0-9]+)\;/)
-      match_data == nil 
+      match_data.nil?
     end
-    byebug
-    @paragraph_options.first['content'].gsub(/<\/?p>\s?+/, '').gsub('\n', '').strip
+    @paragraph_options.first['content'].gsub(/<\/?p>\s?+/, '').gsub('\n', '').tr('’', '\'').strip
     # /&#([0-9]+);/ <== replace apostrophe with single quote
   end
 
