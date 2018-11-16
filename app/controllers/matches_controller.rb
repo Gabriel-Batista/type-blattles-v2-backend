@@ -23,6 +23,7 @@ class MatchesController < ApplicationController
   def update
     @match = Match.find(params[:id])
     if @match.update(match_params)
+      match_complete
       broadcast_to_match(@match)
       render json: @match
     else
@@ -63,6 +64,14 @@ class MatchesController < ApplicationController
 
   def match_params
     params.require(:match).permit(:complete, :seats_taken)
+  end
+
+  def match_complete()
+    if @match.complete == true
+      @match.users.each do |user|
+        user.update(in_match: false)
+      end
+    end
   end
 end
 
