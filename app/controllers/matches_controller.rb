@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MatchesController < ApplicationController
   before_action :require_login
 
@@ -41,7 +43,8 @@ class MatchesController < ApplicationController
     @matches = Match.where('seats_taken < 4')
     @user = User.find_by(token: token)
     if @matches.empty? && @user.in_match == false
-      @match = Match.create(paragraph: fetchNewParagraph)
+      @paragraph = fetchNewParagraph
+      @match = Match.create(paragraph: @paragraph[:quote], author: @paragraph[:author])
       @match.user_matches.create(user_id: @user.id)
       @user.update(in_match: true)
       puts @match
@@ -52,11 +55,9 @@ class MatchesController < ApplicationController
       @match.update(seats_taken: @match.seats_taken + 1)
       @user.update(in_match: true)
       broadcast_to_match(@match)
-            puts @match
-
       render json: @match
     else
-      render json: { error: 'User is already in a match' }, status: 400
+      render json: @user.matches.find_by(complete: false)
     end
   end
 
@@ -66,7 +67,7 @@ class MatchesController < ApplicationController
     params.require(:match).permit(:complete, :seats_taken)
   end
 
-  def match_complete()
+  def match_complete
     if @match.complete == true
       @match.users.each do |user|
         user.update(in_match: false)
@@ -74,5 +75,3 @@ class MatchesController < ApplicationController
     end
   end
 end
-
-

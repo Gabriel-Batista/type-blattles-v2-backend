@@ -24,8 +24,11 @@ class ApplicationController < ActionController::Base
       match_data = paragraph['content'].match(/\&\#([0-9]+)\;/)
       match_data.nil?
     end
-    @paragraph_options.first['content'].gsub(/<\/?p>\s?+/, '').gsub('\n', '').tr('’', '\'').strip
+    @quote = @paragraph_options.first['content'].gsub(/<\/?p>\s?+/, '').gsub('\n', '').tr('’', '\'').strip
+    @author = @paragraph_options.first['title']
     # /&#([0-9]+);/ <== replace apostrophe with single quote
+
+    { quote: @quote, author: @author}
   end
 
 
