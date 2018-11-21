@@ -47,7 +47,6 @@ class MatchesController < ApplicationController
       @match = Match.create(paragraph: @paragraph[:quote], author: @paragraph[:author])
       @match.user_matches.create(user_id: @user.id)
       @user.update(in_match: true)
-      puts @match
       render json: @match
     elsif @user.in_match == false
       @match = @matches.all.first
