@@ -22,6 +22,8 @@ To run frontend web app check frontend repo: [Frontend](https://github.com/Gabri
 
 * [Ruby on Rails](https://rubyonrails.org/) - The server framework used
 * [excon-rails](https://github.com/excon/excon)
+* [bcrypt](https://github.com/codahale/bcrypt-ruby) - Password encryption gem
+* [Postgresql](https://www.postgresql.org/) - Database
 
 ## Contributing
 
