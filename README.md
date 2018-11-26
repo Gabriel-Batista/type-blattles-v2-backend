@@ -1,22 +1,29 @@
-# Type-Battles-v2
+# Type-Battles-V2
 
 A fresh take on improving your typing speed, compete against friends and see who can reach the highest score. 
+
+Check out the hosted project on Heroku: [Type Battles V2](http://type-battles-v2.herokuapp.com/)
+
+![Type Battles V2 - Home Page](http://i68.tinypic.com/wkfpcz.png)
+
+![Type Battles V2 - Waiting Page](http://i67.tinypic.com/2vd1q14.png)
+
+![Type Battles V2 - Play Page](http://i64.tinypic.com/2e0mfl5.png)
 
 ## Getting Started
 
 1. Clone or download the project to your computer.
-2. Open your terminal and type `bundle install` to download the dependencies.
+2. Open your terminal and navigate to your project, then type `bundle install` to download the dependencies.
 3. type `rails start` to start the server.
 
-To run frontend web app check link below:
-[Frontend](https://github.com/Gabriel-Batista/type-battles-v2/blob/master/README.md)
+To run frontend web app check frontend repo: [Frontend](https://github.com/Gabriel-Batista/type-battles-v2/blob/master/README.md)
 
 ## Built With
 
 * [Ruby on Rails](https://rubyonrails.org/) - The server framework used
-* [Semantic UI](https://react.semantic-ui.com/) - Used to generate RSS Feeds
-* [React](https://github.com/facebook/react) - The web framework used
-* [Redux](https://github.com/reduxjs/react-redux) - State manager
+* [excon-rails](https://github.com/excon/excon)
+* [bcrypt](https://github.com/codahale/bcrypt-ruby) - Password encryption gem
+* [Postgresql](https://www.postgresql.org/) - Database
 
 ## Contributing
 
@@ -25,7 +32,6 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 ## Authors
 
 * **Gabriel Batista** - *Initial work* - [Gabriel-Batista](https://github.com/Gabriel-Batista)
-* **Kevin Rivera** - *Initial work* - [Kevin-Rivera] (https://github.com/krivera1015)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
@@ -36,3 +42,8 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * (Inspiration) https://play.typeracer.com/
+
+
+
+
+**Currently looking for my first break in software engineering, if interrested contact me at [gabedbatista@gmail.com](gabedbatista@gmail.com) or check out my LinkedIn at [https://www.linkedin.com/in/gabriel-batista-dev/](https://www.linkedin.com/in/gabriel-batista-dev/)**
