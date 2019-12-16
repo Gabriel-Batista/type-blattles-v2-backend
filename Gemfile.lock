@@ -58,7 +58,7 @@ GEM
     concurrent-ruby (1.0.5)
     crass (1.0.4)
     erubi (1.7.1)
-    excon (0.62.0)
+    excon (0.71.0)
     excon-rails (1.0.0)
       activesupport (>= 3.0)
       excon (>= 0.18.0)
